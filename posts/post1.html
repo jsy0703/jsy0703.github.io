@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>첫 번째 포스트 - My Blog</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .post-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .post-header {
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .post-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 1rem 0;
+        }
+        
+        .post-content h2 {
+            color: #2c3e50;
+            margin: 1.5rem 0 1rem;
+        }
+        
+        .post-content p {
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: #3498db;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1><a href="../index.html">My Blog</a></h1>
+            <ul>
+                <li><a href="../index.html">홈</a></li>
+                <li><a href="../about.html">소개</a></li>
+                <li><a href="../posts.html">글목록</a></li>
+                <li><a href="../contact.html">연락처</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article class="post-content">
+            <div class="post-header">
+                <h1>첫 번째 포스트 제목</h1>
+                <p class="date">2024년 1월 15일</p>
+            </div>
+            
+            <h2>소제목 1</h2>
+            <p>
+                여기에 포스트 내용을 작성합니다. 
+                HTML 태그를 자유롭게 사용할 수 있어요.
+            </p>
+            
+            <h2>소제목 2</h2>
+            <p>
+                이미지도 추가할 수 있습니다:
+            </p>
+            <img src="../images/example.jpg" alt="예시 이미지">
+            
+            <h2>코드 블록 예시</h2>
+            <pre><code>
+function hello() {
+    console.log("Hello, World!");
+}
+            </code></pre>
+            
+            <a href="../index.html" class="back-link">← 목록으로 돌아가기</a>
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 My Blog. All rights reserved.</p>
+    </footer>
+</body>
+</html>
