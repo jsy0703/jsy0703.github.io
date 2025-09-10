@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글목록 - Spring's Blog</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .posts-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .post-list {
+            list-style: none;
+            padding: 0;
+        }
+        .post-item {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .post-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .post-item h2 {
+            margin-top: 0;
+        }
+        .post-item a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .post-date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        .post-excerpt {
+            color: #34495e;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1><a href="index.html">Spring's Blog</a></h1>
+            <ul>
+                <li><a href="index.html">홈</a></li>
+                <li><a href="about.html">소개</a></li>
+                <li><a href="posts.html" class="active">글목록</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="posts-container">
+            <h1>📝 전체 글 목록</h1>
+            
+            <ul class="post-list">
+                <li class="post-item">
+                    <a href="posts/first-post.html">
+                        <h2>블로그 시작합니다! 🎉</h2>
+                        <p class="post-date">2025년 1월 15일</p>
+                        <p class="post-excerpt">
+                            드디어 나만의 블로그를 만들었습니다! GitHub Pages를 이용해서 무료로 호스팅하고 있어요.
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Spring's Blog. All rights reserved.</p>
+    </footer>
+</body>
+</html>
