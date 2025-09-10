@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 개발 꿀팁 모음 - JSY's Blog</title>
+    <link rel="stylesheet" href="../modern-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .post-content {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: var(--radius-lg);
+            margin: 2rem 0;
+            box-shadow: var(--shadow);
+            line-height: 1.8;
+        }
+        .post-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--bg);
+        }
+        .post-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .post-meta {
+            color: var(--light);
+            font-size: 1rem;
+        }
+        .post-content h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: var(--primary);
+        }
+        .post-content h3 {
+            font-size: 1.4rem;
+            margin: 1.5rem 0 0.8rem;
+            color: var(--dark);
+        }
+        .post-content p {
+            margin-bottom: 1.2rem;
+            color: var(--dark);
+        }
+        .post-content ul, .post-content ol {
+            margin: 1rem 0 1.5rem 2rem;
+        }
+        .post-content li {
+            margin-bottom: 0.5rem;
+        }
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+        .tip-box {
+            background: rgba(99,102,241,0.05);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: var(--radius);
+        }
+        .tip-box h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            padding: 0.7rem 1.5rem;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .back-button:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 6px 25px rgba(99,102,241,0.3);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1><a href="../index.html">✨ JSY's Blog</a></h1>
+            <ul>
+                <li><a href="../index.html"><i class="fas fa-home"></i> 홈</a></li>
+                <li><a href="../about.html"><i class="fas fa-user"></i> 소개</a></li>
+                <li><a href="../posts.html"><i class="fas fa-pen"></i> 글목록</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> 연락처</a></li>
+                <li><button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i> 다크모드</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <a href="../index.html" class="back-button">
+            <i class="fas fa-arrow-left"></i> 목록으로 돌아가기
+        </a>
+
+        <article class="post-content">
+            <div class="post-header">
+                <h1 class="post-title">웹 개발 꿀팁 모음 💡</h1>
+                <div class="post-meta">
+                    <i class="fas fa-calendar"></i> 2025년 1월 14일 | 
+                    <i class="fas fa-user"></i> JSY | 
+                    <i class="fas fa-clock"></i> 10분 읽기
+                </div>
+                <div class="tags" style="margin-top: 1rem; justify-content: center;">
+                    <span class="tag">#웹개발</span>
+                    <span class="tag">#HTML</span>
+                    <span class="tag">#CSS</span>
+                    <span class="tag">#JavaScript</span>
+                </div>
+            </div>
+
+            <p>안녕하세요! 오늘은 웹 개발을 하면서 제가 유용하게 사용하고 있는 꿀팁들을 공유해보려고 합니다. 초보자분들부터 중급자분들까지 도움이 될 만한 내용들로 준비했어요!</p>
+
+            <h2>1. VS Code 단축키 마스터하기 ⌨️</h2>
+            
+            <p>개발 생산성을 높이는 가장 빠른 방법은 에디터를 잘 다루는 것입니다. VS Code의 필수 단축키들을 소개합니다:</p>
+
+            <div class="tip-box">
+                <h4>💡 자주 쓰는 VS Code 단축키</h4>
+                <ul>
+                    <li><strong>Ctrl + P</strong> : 빠른 파일 열기</li>
+                    <li><strong>Ctrl + Shift + P</strong> : 명령 팔레트</li>
+                    <li><strong>Alt + 위/아래 화살표</strong> : 코드 라인 이동</li>
+                    <li><strong>Shift + Alt + 위/아래</strong> : 코드 라인 복사</li>
+                    <li><strong>Ctrl + D</strong> : 같은 단어 선택 (여러 개)</li>
+                    <li><strong>Ctrl + /</strong> : 주석 토글</li>
+                </ul>
+            </div>
+
+            <h2>2. CSS Flexbox 완벽 정리 🎨</h2>
+
+            <p>Flexbox는 레이아웃을 만들 때 정말 강력한 도구입니다. 자주 사용하는 패턴들을 정리해봤어요:</p>
+
+            <h3>가운데 정렬의 모든 것</h3>
+            <div class="code-block">
+/* 수평 + 수직 가운데 정렬 */
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 수평만 가운데 정렬 */
+.horizontal-center {
+    display: flex;
+    justify-content: center;
+}
+
+/* 수직만 가운데 정렬 */
+.vertical-center {
+    display: flex;
+    align-items: center;
+}</div>
+
+            <h3>반응형 카드 레이아웃</h3>
+            <div class="code-block">
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.card {
+    flex: 1 1 300px; /* 최소 300px, 늘어날 수 있음 */
+    max-width: 400px;
+}</div>
+
+            <h2>3. JavaScript 유용한 메서드들 🚀</h2>
+
+            <p>ES6+ 문법을 활용한 깔끔한 코드 작성법을 소개합니다:</p>
+
+            <h3>배열 다루기</h3>
+            <div class="code-block">
+// 배열에서 중복 제거하기
+const uniqueArray = [...new Set(array)];
+
+// 배열 평탄화 (중첩 배열 풀기)
+const nested = [[1, 2], [3, 4], [5, 6]];
+const flat = nested.flat(); // [1, 2, 3, 4, 5, 6]
+
+// 조건에 맞는 요소 찾기
+const users = [{id: 1, name: 'Alice'}, {id: 2, name: 'Bob'}];
+const user = users.find(u => u.id === 2);
+
+// 배열 요소 합계 구하기
+const sum = numbers.reduce((acc, num) => acc + num, 0);</div>
+
+            <h3>객체 다루기</h3>
+            <div class="code-block">
+// 객체 복사 (얕은 복사)
+const copy = {...original};
+
+// 객체 병합
+const merged = {...obj1, ...obj2};
+
+// 조건부 속성 추가
+const user = {
+    name: 'JSY',
+    ...(isAdmin && { role: 'admin' })
+};
+
+// 객체에서 특정 키 제거
+const {password, ...userWithoutPassword} = user;</div>
+
+            <h2>4. 성능 최적화 팁 ⚡</h2>
+
+            <div class="tip-box">
+                <h4>🚀 웹 성능 향상 체크리스트</h4>
+                <ul>
+                    <li>이미지 최적화 (WebP 포맷 사용, lazy loading)</li>
+                    <li>CSS/JS 파일 압축 (minify)</li>
+                    <li>브라우저 캐싱 활용</li>
+                    <li>불필요한 리렌더링 방지</li>
+                    <li>비동기 로딩 활용 (async, defer)</li>
+                </ul>
+            </div>
+
+            <h2>5. Git 꿀팁 🔧</h2>
+
+            <p>Git을 더 효율적으로 사용하는 방법들입니다:</p>
+
+            <div class="code-block">
+# 실수로 커밋한 내용 되돌리기
+git reset --soft HEAD~1
+
+# 특정 파일만 이전 상태로 되돌리기
+git checkout -- filename
+
+# 커밋 메시지 수정
+git commit --amend -m "새로운 메시지"
+
+# 브랜치 이름 변경
+git branch -m old-name new-name
+
+# 깔끔한 로그 보기
+git log --oneline --graph --all</div>
+
+            <h2>6. 디버깅 꿀팁 🐛</h2>
+
+            <p>버그를 빠르게 찾고 해결하는 방법:</p>
+
+            <div class="tip-box">
+                <h4>🔍 Console 객체 활용하기</h4>
+                <div class="code-block">
+// 테이블 형태로 출력
+console.table(array);
+
+// 실행 시간 측정
+console.time('작업');
+// ... 코드 실행
+console.timeEnd('작업');
+
+// 그룹화해서 출력
+console.group('그룹 이름');
+console.log('내용1');
+console.log('내용2');
+console.groupEnd();
+
+// 조건부 출력
+console.assert(condition, '조건이 false일 때 출력');</div>
+            </div>
+
+            <h2>마무리</h2>
+
+            <p>오늘 소개한 팁들이 여러분의 개발 생산성 향상에 도움이 되었으면 좋겠습니다! 궁금한 점이나 더 알고 싶은 내용이 있다면 댓글로 남겨주세요. 다음 포스트에서는 React 개발 팁을 다뤄볼 예정입니다. 😊</p>
+
+            <p>Happy Coding! 🚀</p>
+        </article>
+    </main>
+
+    <footer id="contact">
+        <p>&copy; 2025 JSY's Blog. Made with 💜 and GitHub Pages</p>
+        <div class="social-links">
+            <a href="https://github.com/jsy0703" target="_blank" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:your-email@example.com" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="#" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" title="Instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const button = document.querySelector('.theme-toggle');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                button.innerHTML = '<i class="fas fa-moon"></i> 다크모드';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                button.innerHTML = '<i class="fas fa-sun"></i> 라이트모드';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            const button = document.querySelector('.theme-toggle');
+            
+            if (savedTheme === 'dark') {
+                document.body.setAttribute('data-theme', 'dark');
+                button.innerHTML = '<i class="fas fa-sun"></i> 라이트모드';
+            }
+        });
+    </script>
+</body>
+</html>
