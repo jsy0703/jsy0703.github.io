@@ -3,11 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - JSY's Dev Blog</title>
+    <title>About Me - JSY's Dev Blog</title>
     <link rel="stylesheet" href="modern-style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            animation: float 20s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-50px, 50px) rotate(180deg); }
+        }
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            display: inline-block;
+            padding: 5px;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .about-content {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(102,126,234,0.2);
+        }
+        .info-card i {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        .skills-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            color: #667eea;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid #667eea30;
+            display: inline-block;
+            margin: 0.3rem;
+            transition: all 0.3s ease;
+        }
+        .skill-tag:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body>
-    <h1>About Page - Updated Content</h1>
+    <header>
+        <nav>
+            <h1><a href="index.html">🚀 JSY's Dev Blog</a></h1>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-home"></i> 홈</a></li>
+                <li><a href="about.html" class="active"><i class="fas fa-user"></i> 소개</a></li>
+                <li><a href="posts.html"><i class="fas fa-book"></i> 포스트</a></li>
+                <li><button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i> 다크모드</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="about-hero">
+            <div class="profile-img"></div>
+            <h1>안녕하세요, JSY입니다! 👋</h1>
+            <p style="font-size: 1.3rem; opacity: 0.95;">열정적인 개발자 | 끊임없이 학습하는 사람 | 문제 해결사</p>
+        </div>
+        
+        <div class="about-content">
+            <div class="info-cards">
+                <div class="info-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Full-Stack Developer</h3>
+                    <p>프론트엔드와 백엔드 모두를 다루며 완성도 있는 웹 애플리케이션을 만듭니다</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Continuous Learner</h3>
+                    <p>새로운 기술과 트렌드를 꾸준히 학습하며 성장합니다</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Team Player</h3>
+                    <p>협업과 소통을 중요시하며 함께 성장하는 것을 추구합니다</p>
+                </div>
+            </div>
+            
+            <div class="skills-section">
+                <h2 style="text-align: center; margin-bottom: 2rem;">🛠️ 기술 스택</h2>
+                <div class="skills-grid">
+                    <div>
+                        <h3 style="color: #667eea;"><i class="fas fa-laptop-code"></i> Frontend</h3>
+                        <div>
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Vue.js</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="color: #667eea;"><i class="fas fa-server"></i> Backend</h3>
+                        <div>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">Spring</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="color: #667eea;"><i class="fas fa-database"></i> Database</h3>
+                        <div>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">Redis</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="color: #667eea;"><i class="fas fa-tools"></i> Tools</h3>
+                        <div>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">AWS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 JSY's Dev Blog. Made with 💜</p>
+        <div class="social-links">
+            <a href="https://github.com/jsy0703" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="mailto:jsy0703@example.com"><i class="fas fa-envelope"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const button = document.querySelector('.theme-toggle');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                button.innerHTML = '<i class="fas fa-moon"></i> 다크모드';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                button.innerHTML = '<i class="fas fa-sun"></i> 라이트모드';
+            }
+        }
+    </script>
 </body>
 </html>
