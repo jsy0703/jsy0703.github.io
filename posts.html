@@ -3,333 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Posts - JSY's Dev Blog</title>
-    <link rel="stylesheet" href="modern-style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>Posts - jsy0703 Blog</title>
     <style>
-        .posts-hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 5rem 2rem;
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #0d1117;
+            color: #c9d1d9;
+        }
+        .header {
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            margin-bottom: 40px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #1f6feb, #8b5cf6);
+            border-radius: 12px;
         }
-        .posts-hero::before {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            top: -200px;
-            left: -200px;
-            animation: float 20s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(50px, 50px) rotate(180deg); }
-        }
-        .posts-container {
-            max-width: 1200px;
-            margin: -50px auto 3rem;
-            padding: 0 2rem;
-            position: relative;
-            z-index: 1;
-        }
-        .filter-section {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            margin-bottom: 3rem;
-        }
-        .filter-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-        }
-        .filter-tag {
-            padding: 0.7rem 1.5rem;
-            border-radius: 25px;
-            background: linear-gradient(135deg, #f0f2f5 0%, #e9ecef 100%);
-            color: #495057;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-        }
-        .filter-tag:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-        .filter-tag.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
             color: white;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: #21262d;
+            color: #58a6ff;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            background: #30363d;
+            transform: translateY(-2px);
         }
         .posts-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
+            gap: 24px;
+            margin-top: 30px;
         }
         .post-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 24px;
             transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
+            position: relative;
+            overflow: hidden;
         }
         .post-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(102,126,234,0.2);
+            border-color: #58a6ff;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(88, 166, 255, 0.15);
         }
-        .post-thumbnail {
-            height: 200px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-        }
-        .post-content {
-            padding: 2rem;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        .post-category {
-            display: inline-block;
-            padding: 0.4rem 1rem;
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-            color: #667eea;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-            border: 1px solid #667eea30;
+        .post-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #1f6feb, #8b5cf6);
         }
         .post-title {
-            font-size: 1.5rem;
-            color: #2d3748;
-            margin-bottom: 1rem;
-            font-weight: 700;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 0 0 12px 0;
+            color: #f0f6fc;
         }
-        .post-excerpt {
-            color: #718096;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            flex: 1;
+        .post-title a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .post-title a:hover {
+            color: #58a6ff;
         }
         .post-meta {
+            color: #7d8590;
+            font-size: 0.9em;
+            margin-bottom: 16px;
             display: flex;
-            justify-content: space-between;
+            gap: 16px;
             align-items: center;
-            color: #a0aec0;
-            font-size: 0.9rem;
-            padding-top: 1rem;
-            border-top: 1px solid #e2e8f0;
+        }
+        .post-excerpt {
+            color: #c9d1d9;
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+        .post-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+        .tag {
+            background: #1f6feb20;
+            color: #58a6ff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            border: 1px solid #1f6feb40;
         }
         .read-more {
+            color: #58a6ff;
+            text-decoration: none;
+            font-weight: 500;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            gap: 4px;
         }
         .read-more:hover {
-            gap: 1rem;
+            text-decoration: underline;
         }
-        .load-more {
+        .no-posts {
             text-align: center;
-            margin-top: 3rem;
+            padding: 60px 20px;
+            color: #7d8590;
         }
-        .load-more button {
-            padding: 1rem 3rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .stats {
+            background: #0f1419;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
         }
-        .load-more button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(102,126,234,0.3);
+        .post-icon {
+            font-size: 1.2em;
+            margin-right: 8px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <h1><a href="index.html">🚀 JSY's Dev Blog</a></h1>
-            <ul>
-                <li><a href="index.html"><i class="fas fa-home"></i> 홈</a></li>
-                <li><a href="about.html"><i class="fas fa-user"></i> 소개</a></li>
-                <li><a href="posts.html" class="active"><i class="fas fa-book"></i> 포스트</a></li>
-                <li><button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i> 다크모드</button></li>
-            </ul>
-        </nav>
-    </header>
+    <a href="../index.html" class="back-btn">← 홈으로</a>
+    
+    <div class="header">
+        <h1>📝 Blog Posts</h1>
+        <p>개발, 기술, 그리고 일상의 이야기들</p>
+    </div>
 
-    <main>
-        <div class="posts-hero">
-            <h1>📚 Blog Posts</h1>
-            <p style="font-size: 1.3rem; opacity: 0.95;">개발하며 배운 것들을 기록하고 공유합니다</p>
-        </div>
+    <div class="stats">
+        <strong>총 1개의 포스트</strong> | 마지막 업데이트: 2024년 12월 28일
+    </div>
 
-        <div class="posts-container">
-            <div class="filter-section">
-                <h3 style="text-align: center; margin-bottom: 1.5rem; color: #2d3748;">🏷️ 카테고리</h3>
-                <div class="filter-tags">
-                    <button class="filter-tag active">전체</button>
-                    <button class="filter-tag">JavaScript</button>
-                    <button class="filter-tag">React</button>
-                    <button class="filter-tag">Node.js</button>
-                    <button class="filter-tag">Python</button>
-                    <button class="filter-tag">Database</button>
-                    <button class="filter-tag">DevOps</button>
-                    <button class="filter-tag">알고리즘</button>
-                </div>
+    <div class="posts-grid">
+        <article class="post-card">
+            <h2 class="post-title">
+                <span class="post-icon">🎮</span>
+                <a href="posts/mcpo-server-guide.html">MCPO 서버 완벽 가이드</a>
+            </h2>
+            <div class="post-meta">
+                <span>📅 2024년 12월 28일</span>
+                <span>⏱️ 읽는 시간: 15분</span>
+                <span>👀 조회수: 새 글</span>
             </div>
-
-            <div class="posts-grid">
-                <article class="post-card">
-                    <div class="post-thumbnail">⚛️</div>
-                    <div class="post-content">
-                        <span class="post-category">React</span>
-                        <h2 class="post-title">React 18의 새로운 기능들</h2>
-                        <p class="post-excerpt">React 18에서 추가된 Concurrent Features, Automatic Batching, Suspense 개선사항 등 주요 업데이트 내용을 살펴봅니다.</p>
-                        <div class="post-meta">
-                            <span><i class="far fa-calendar"></i> 2025.01.15</span>
-                            <a href="#" class="read-more">읽기 <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="post-card">
-                    <div class="post-thumbnail">🚀</div>
-                    <div class="post-content">
-                        <span class="post-category">JavaScript</span>
-                        <h2 class="post-title">JavaScript 성능 최적화 팁</h2>
-                        <p class="post-excerpt">웹 애플리케이션의 성능을 향상시키기 위한 JavaScript 최적화 기법과 실제 적용 사례를 공유합니다.</p>
-                        <div class="post-meta">
-                            <span><i class="far fa-calendar"></i> 2025.01.12</span>
-                            <a href="#" class="read-more">읽기 <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="post-card">
-                    <div class="post-thumbnail">🐍</div>
-                    <div class="post-content">
-                        <span class="post-category">Python</span>
-                        <h2 class="post-title">Python으로 웹 크롤링하기</h2>
-                        <p class="post-excerpt">BeautifulSoup과 Selenium을 활용한 웹 크롤링 기초부터 실전까지, 단계별로 알아봅니다.</p>
-                        <div class="post-meta">
-                            <span><i class="far fa-calendar"></i> 2025.01.10</span>
-                            <a href="#" class="read-more">읽기 <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="post-card">
-                    <div class="post-thumbnail">🗄️</div>
-                    <div class="post-content">
-                        <span class="post-category">Database</span>
-                        <h2 class="post-title">MongoDB vs PostgreSQL 비교</h2>
-                        <p class="post-excerpt">NoSQL과 RDBMS의 대표격인 MongoDB와 PostgreSQL의 특징과 사용 사례를 비교 분석합니다.</p>
-                        <div class="post-meta">
-                            <span><i class="far fa-calendar"></i> 2025.01.08</span>
-                            <a href="#" class="read-more">읽기 <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="post-card">
-                    <div class="post-thumbnail">🎨</div>
-                    <div class="post-content">
-                        <span class="post-category">CSS</span>
-                        <h2 class="post-title">CSS Grid 완벽 가이드</h2>
-                        <p class="post-excerpt">CSS Grid를 활용한 반응형 레이아웃 구성 방법과 실제 프로젝트 적용 예제를 소개합니다.</p>
-                        <div class="post-meta">
-                            <span><i class="far fa-calendar"></i> 2025.01.05</span>
-                            <a href="#" class="read-more">읽기 <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="post-card">
-                    <div class="post-thumbnail">🔧</div>
-                    <div class="post-content">
-                        <span class="post-category">DevOps</span>
-                        <h2 class="post-title">Docker 컨테이너 입문</h2>
-                        <p class="post-excerpt">Docker의 기본 개념부터 이미지 생성, 컨테이너 관리까지 실습을 통해 알아봅니다.</p>
-                        <div class="post-meta">
-                            <span><i class="far fa-calendar"></i> 2025.01.03</span>
-                            <a href="#" class="read-more">읽기 <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                </article>
+            <div class="post-tags">
+                <span class="tag">마인크래프트</span>
+                <span class="tag">서버 관리</span>
+                <span class="tag">MCPO</span>
+                <span class="tag">게임</span>
+                <span class="tag">튜토리얼</span>
             </div>
+            <p class="post-excerpt">
+                마인크래프트 Pocket Edition 서버를 구축하고 운영하는 완벽한 가이드입니다. 
+                PocketMine-MP 설치부터 플러그인 관리, 서버 최적화, 플레이어 관리까지 
+                MCPO 서버 운영에 필요한 모든 정보를 담았습니다. 초보자도 쉽게 따라할 수 있는 
+                단계별 설명과 실용적인 팁들을 제공합니다.
+            </p>
+            <a href="posts/mcpo-server-guide.html" class="read-more">
+                자세히 읽기 →
+            </a>
+        </article>
+    </div>
 
-            <div class="load-more">
-                <button onclick="loadMore()">더 보기 <i class="fas fa-chevron-down"></i></button>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <p>© 2025 JSY's Dev Blog. Made with 💜</p>
-        <div class="social-links">
-            <a href="https://github.com/jsy0703" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="mailto:jsy0703@example.com"><i class="fas fa-envelope"></i></a>
-        </div>
-    </footer>
-
-    <script>
-        function toggleTheme() {
-            const body = document.body;
-            const button = document.querySelector('.theme-toggle');
-            
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
-                button.innerHTML = '<i class="fas fa-moon"></i> 다크모드';
-                localStorage.setItem('theme', 'light');
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                button.innerHTML = '<i class="fas fa-sun"></i> 라이트모드';
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-
-        // 카테고리 필터
-        const filterTags = document.querySelectorAll('.filter-tag');
-        filterTags.forEach(tag => {
-            tag.addEventListener('click', function() {
-                filterTags.forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-
-        // 더 보기 기능
-        function loadMore() {
-            alert('더 많은 포스트를 불러옵니다...');
-        }
-
-        // 저장된 테마 적용
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.setAttribute('data-theme', 'dark');
-                document.querySelector('.theme-toggle').innerHTML = '<i class="fas fa-sun"></i> 라이트모드';
-            }
-        });
-    </script>
+    <div style="text-align: center; margin-top: 60px; padding: 30px; background: #161b22; border-radius: 12px; border: 1px solid #30363d;">
+        <h3 style="color: #58a6ff; margin-bottom: 16px;">💌 새 글 알림</h3>
+        <p>새로운 포스트가 업로드되면 알림을 받고 싶으시다면 GitHub을 팔로우해주세요!</p>
+        <a href="https://github.com/jsy0703" target="_blank" style="color: #58a6ff; text-decoration: none;">
+            👤 @jsy0703 팔로우하기
+        </a>
+    </div>
 </body>
 </html>
