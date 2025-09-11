@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenWebUI MCPO 서버 설치 및 인증 가이드</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+        }
+        h3 {
+            color: #7f8c8d;
+        }
+        .step {
+            background: #ecf0f1;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #3498db;
+            border-radius: 5px;
+        }
+        .code {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .warning {
+            background: #f39c12;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .success {
+            background: #27ae60;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .nav-button {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+        .nav-button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 OpenWebUI MCPO 서버 설치 및 인증 가이드</h1>
+        
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-button">🏠 홈으로</a>
+            <a href="posts.html" class="nav-button">📝 포스트 목록</a>
+        </div>
+
+        <h2>📋 설치 방식 비교</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>항목</th>
+                    <th>Python 직접 설치</th>
+                    <th>Docker 설치</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>난이도</strong></td>
+                    <td>보통</td>
+                    <td>쉬움</td>
+                </tr>
+                <tr>
+                    <td><strong>종속성 관리</strong></td>
+                    <td>수동 관리 필요</td>
+                    <td>자동 관리</td>
+                </tr>
+                <tr>
+                    <td><strong>업데이트</strong></td>
+                    <td>git pull 후 재시작</td>
+                    <td>이미지 업데이트</td>
+                </tr>
+                <tr>
+                    <td><strong>격리성</strong></td>
+                    <td>시스템 의존</td>
+                    <td>완전 격리</td>
+                </tr>
+                <tr>
+                    <td><strong>추천 대상</strong></td>
+                    <td>개발자, 커스터마이징 필요</td>
+                    <td>일반 사용자, 빠른 설치</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>🐍 Python 직접 설치 방법</h2>
+        
+        <div class="step">
+            <h3>1단계: 저장소 클론</h3>
+            <div class="code">
+git clone https://github.com/open-webui/open-webui.git<br>
+cd open-webui
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>2단계: Python 가상환경 설정</h3>
+            <div class="code">
+python -m venv venv<br>
+source venv/bin/activate  # Linux/Mac<br>
+venv\Scripts\activate     # Windows
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>3단계: 종속성 설치</h3>
+            <div class="code">
+pip install -r requirements.txt<br>
+pip install -e .
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>4단계: 환경 변수 설정</h3>
+            <div class="code">
+export WEBUI_SECRET_KEY="your-secret-key"<br>
+export ENABLE_MCP=true
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>5단계: 서버 시작</h3>
+            <div class="code">
+python -m open_webui.main
+            </div>
+        </div>
+
+        <h2>🐳 Docker 설치 방법 (권장)</h2>
+        
+        <div class="step">
+            <h3>1단계: Docker 이미지 다운로드</h3>
+            <div class="code">
+docker pull ghcr.io/open-webui/open-webui:main
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>2단계: 컨테이너 실행</h3>
+            <div class="code">
+docker run -d --name open-webui \<br>
+  -p 3000:8080 \<br>
+  -e ENABLE_MCP=true \<br>
+  -e WEBUI_SECRET_KEY="your-secret-key" \<br>
+  -v open-webui:/app/backend/data \<br>
+  ghcr.io/open-webui/open-webui:main
+            </div>
+        </div>
+
+        <div class="success">
+            ✅ 설치 완료! http://localhost:3000 에서 접속 가능합니다.
+        </div>
+
+        <h2>🔐 MCP (Model Context Protocol) 인증 설정</h2>
+        
+        <div class="step">
+            <h3>1단계: 관리자 계정 생성</h3>
+            <p>첫 접속 시 관리자 계정을 생성합니다.</p>
+        </div>
+
+        <div class="step">
+            <h3>2단계: MCP 서버 설정</h3>
+            <p>설정 → MCP 설정에서 다음 정보 입력:</p>
+            <div class="code">
+서버 이름: atlassian-mcp<br>
+엔드포인트: https://your-mcp-server.com/mcp<br>
+API 키: your-api-key
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>3단계: Atlassian 연동 설정</h3>
+            <div class="code">
+{
+  "mcpServers": {
+    "atlassian": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@atlassianlabs/mcp-server-atlassian@latest"
+      ],
+      "env": {
+        "ATLASSIAN_API_TOKEN": "your-atlassian-api-token",
+        "ATLASSIAN_DOMAIN": "your-domain.atlassian.net",
+        "ATLASSIAN_EMAIL": "your-email@example.com"
+      }
+    }
+  }
+}
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>4단계: Microsoft Teams 연동</h3>
+            <div class="code">
+{
+  "mcpServers": {
+    "teams": {
+      "command": "node",
+      "args": [
+        "path/to/teams-mcp-server.js"
+      ],
+      "env": {
+        "TEAMS_CLIENT_ID": "your-teams-client-id",
+        "TEAMS_CLIENT_SECRET": "your-teams-client-secret",
+        "TEAMS_TENANT_ID": "your-tenant-id"
+      }
+    }
+  }
+}
+            </div>
+        </div>
+
+        <h2>🔗 Open WebUI와 MCP 연결</h2>
+        
+        <div class="step">
+            <h3>1단계: MCP 클라이언트 설정</h3>
+            <p>Open WebUI 설정에서 MCP 클라이언트를 활성화합니다.</p>
+        </div>
+
+        <div class="step">
+            <h3>2단계: 서버 연결 테스트</h3>
+            <div class="code">
+curl -X POST http://localhost:3000/api/mcp/test \<br>
+  -H "Content-Type: application/json" \<br>
+  -d '{"server": "atlassian"}'
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>3단계: 권한 설정</h3>
+            <p>MCP 서버별로 접근 권한을 설정합니다:</p>
+            <ul>
+                <li>읽기 권한: 데이터 조회</li>
+                <li>쓰기 권한: 데이터 수정</li>
+                <li>관리자 권한: 서버 설정 변경</li>
+            </ul>
+        </div>
+
+        <h2>⚙️ 추가 설정</h2>
+        
+        <div class="step">
+            <h3>환경 변수 설정</h3>
+            <div class="code">
+# .env 파일 생성<br>
+WEBUI_SECRET_KEY=your-secret-key<br>
+ENABLE_MCP=true<br>
+MCP_SERVER_URL=http://localhost:8000<br>
+ATLASSIAN_API_TOKEN=your-token<br>
+TEAMS_CLIENT_ID=your-client-id
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>로그 설정</h3>
+            <div class="code">
+export LOG_LEVEL=INFO<br>
+export MCP_LOG_LEVEL=DEBUG
+            </div>
+        </div>
+
+        <h2>🛠️ 문제 해결</h2>
+        
+        <div class="warning">
+            <h3>⚠️ 일반적인 문제</h3>
+            <ul>
+                <li><strong>포트 충돌:</strong> 다른 포트 사용 (-p 8080:8080)</li>
+                <li><strong>권한 오류:</strong> sudo 권한으로 실행</li>
+                <li><strong>메모리 부족:</strong> Docker 메모리 할당 증가</li>
+                <li><strong>MCP 연결 실패:</strong> 네트워크 설정 확인</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>로그 확인</h3>
+            <div class="code">
+# Docker 로그 확인<br>
+docker logs open-webui<br><br>
+# MCP 서버 로그<br>
+tail -f /var/log/mcp-server.log
+            </div>
+        </div>
+
+        <div class="step">
+            <h3>연결 테스트</h3>
+            <div class="code">
+# 웹 인터페이스 접속 테스트<br>
+curl http://localhost:3000/health<br><br>
+# MCP 서버 연결 테스트<br>
+telnet localhost 8000
+            </div>
+        </div>
+
+        <h2>📚 참고 자료</h2>
+        <ul>
+            <li><a href="https://github.com/open-webui/open-webui" target="_blank">Open WebUI GitHub</a></li>
+            <li><a href="https://docs.open-webui.com/" target="_blank">공식 문서</a></li>
+            <li><a href="https://github.com/modelcontextprotocol/specification" target="_blank">MCP 스펙</a></li>
+            <li><a href="https://developer.atlassian.com/cloud/confluence/rest/v2/" target="_blank">Atlassian API</a></li>
+        </ul>
+
+        <div class="success">
+            🎉 OpenWebUI MCPO 서버 설치 및 MCP 인증 설정이 완료되었습니다!<br>
+            문제가 발생하면 로그를 확인하고 GitHub Issues를 참조하세요.
+        </div>
+        
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-button">🏠 홈으로</a>
+            <a href="posts.html" class="nav-button">📝 포스트 목록</a>
+        </div>
+    </div>
+</body>
+</html>
