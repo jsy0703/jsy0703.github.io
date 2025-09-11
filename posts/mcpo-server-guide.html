@@ -3,368 +3,467 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenWebUI MCPO 서버 설치 및 인증 가이드</title>
+    <title>MCPO 서버 설치 및 인증 가이드</title>
+    <!-- Framework7 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7@8/css/framework7.bundle.min.css">
+    <!-- Custom CSS -->
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #2c3e50;
+        .guide-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
             text-align: center;
-            border-bottom: 3px solid #3498db;
-            padding-bottom: 10px;
+            margin-bottom: 20px;
         }
-        h2 {
-            color: #34495e;
-            margin-top: 30px;
+        .guide-header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 300;
         }
-        h3 {
-            color: #7f8c8d;
+        .guide-header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
         }
-        .step {
-            background: #ecf0f1;
+        .comparison-table {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .table-header {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #495057;
+        }
+        .method-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .method-header {
+            padding: 20px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+        }
+        .method-content {
+            padding: 20px;
+        }
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 15px 0;
             padding: 15px;
-            margin: 10px 0;
-            border-left: 4px solid #3498db;
-            border-radius: 5px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #007aff;
         }
-        .code {
-            background: #2c3e50;
-            color: #ecf0f1;
-            padding: 10px;
-            border-radius: 5px;
-            font-family: 'Courier New', monospace;
+        .step-number {
+            background: #007aff;
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
             overflow-x: auto;
-        }
-        .warning {
-            background: #f39c12;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
             margin: 10px 0;
         }
-        .success {
-            background: #27ae60;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
-            margin: 10px 0;
+        .info-box {
+            background: #e3f2fd;
+            border: 1px solid #2196f3;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        .warning-box {
+            background: #fff3e0;
+            border: 1px solid #ff9800;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
             margin: 20px 0;
         }
-        th, td {
-            border: 1px solid #ddd;
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        .nav-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 4px;
+            margin: 20px 0;
+        }
+        .nav-tab {
+            flex: 1;
             padding: 12px;
-            text-align: left;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
         }
-        th {
-            background-color: #3498db;
+        .nav-tab.active {
+            background: #007aff;
             color: white;
         }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
+        .tab-content {
+            display: none;
         }
-        .nav-button {
-            display: inline-block;
-            background: #3498db;
-            color: white;
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 5px;
-            margin: 10px 5px;
-            transition: background 0.3s;
-        }
-        .nav-button:hover {
-            background: #2980b9;
+        .tab-content.active {
+            display: block;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🔧 OpenWebUI MCPO 서버 설치 및 인증 가이드</h1>
-        
-        <div class="nav-buttons">
-            <a href="index.html" class="nav-button">🏠 홈으로</a>
-            <a href="posts.html" class="nav-button">📝 포스트 목록</a>
-        </div>
+    <div id="app">
+        <div class="page">
+            <div class="page-content">
+                <!-- Header -->
+                <div class="guide-header">
+                    <h1>🚀 MCPO 서버 설치 및 인증 가이드</h1>
+                    <p>OpenWebUI MCPO 윈도우 환경 작업 - 완벽한 설치 가이드</p>
+                </div>
 
-        <h2>📋 설치 방식 비교</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>항목</th>
-                    <th>Python 직접 설치</th>
-                    <th>Docker 설치</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>난이도</strong></td>
-                    <td>보통</td>
-                    <td>쉬움</td>
-                </tr>
-                <tr>
-                    <td><strong>종속성 관리</strong></td>
-                    <td>수동 관리 필요</td>
-                    <td>자동 관리</td>
-                </tr>
-                <tr>
-                    <td><strong>업데이트</strong></td>
-                    <td>git pull 후 재시작</td>
-                    <td>이미지 업데이트</td>
-                </tr>
-                <tr>
-                    <td><strong>격리성</strong></td>
-                    <td>시스템 의존</td>
-                    <td>완전 격리</td>
-                </tr>
-                <tr>
-                    <td><strong>추천 대상</strong></td>
-                    <td>개발자, 커스터마이징 필요</td>
-                    <td>일반 사용자, 빠른 설치</td>
-                </tr>
-            </tbody>
-        </table>
+                <div class="block">
+                    <!-- Introduction -->
+                    <div class="card">
+                        <div class="card-content card-content-padding">
+                            <h2>📋 개요</h2>
+                            <p>이 문서는 MCPO 서버 설치를 <strong>두 가지 독립 흐름</strong>으로 안내합니다. 원하시는 방법의 섹션만 따라 하시면 됩니다.</p>
+                            
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <div class="feature-icon">🐍</div>
+                                    <h3>Python 직접 설치</h3>
+                                    <p><code>setup_mcpo_python.bat</code></p>
+                                </div>
+                                <div class="feature-card">
+                                    <div class="feature-icon">🐳</div>
+                                    <h3>Docker 컨테이너 설치</h3>
+                                    <p><code>setup_mcpo_docker.bat</code></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        <h2>🐍 Python 직접 설치 방법</h2>
-        
-        <div class="step">
-            <h3>1단계: 저장소 클론</h3>
-            <div class="code">
-git clone https://github.com/open-webui/open-webui.git<br>
-cd open-webui
+                    <!-- Comparison Table -->
+                    <div class="method-card">
+                        <div class="method-header">
+                            <h2>⚖️ 설치 방식 비교</h2>
+                        </div>
+                        <div class="method-content">
+                            <div class="data-table">
+                                <table>
+                                    <thead class="table-header">
+                                        <tr>
+                                            <th>구분</th>
+                                            <th>Python 직접 설치</th>
+                                            <th>Docker 환경 설치</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>권장 환경</strong></td>
+                                            <td>
+                                                • Docker 사용 불가(회사 정책, 가상화 미지원 등)<br>
+                                                • Python/Node.js 환경 충돌 우려 없음
+                                            </td>
+                                            <td>
+                                                • Python/Node.js가 이미 설치되어 있고 다른 프로젝트와 충돌 우려가 있을 때<br>
+                                                • 여러 프로젝트 환경을 분리하고 싶을 때
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>장점</strong></td>
+                                            <td>
+                                                • 별도 가상화/컨테이너 필요 없음<br>
+                                                • 설치 직관적
+                                            </td>
+                                            <td>
+                                                • 로컬 환경과 완전 분리<br>
+                                                • 환경 충돌 방지<br>
+                                                • 손쉬운 초기화/재설치
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>단점/제약</strong></td>
+                                            <td>
+                                                • 기존 Python/Node.js와 충돌 가능<br>
+                                                • 권한 문제 발생 가능
+                                            </td>
+                                            <td>
+                                                • Docker Desktop 필수<br>
+                                                • 가상화 미지원 PC 사용 불가<br>
+                                                • 리소스 추가 사용
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>설치 방법</strong></td>
+                                            <td><code>setup_mcpo_python.bat</code> 실행</td>
+                                            <td><code>setup_mcpo_docker.bat</code> 실행</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <div class="warning-box">
+                                <strong>⚠️ 중요:</strong> 다른 프로젝트가 Python/Node.js의 특정 버전에 고정되어 있다면, 버전 충돌을 피하기 위해 <strong>Docker 환경을 강력히 권장</strong>합니다.<br>
+                                <strong>권장 버전:</strong> Python 3.11 이상, Node.js 20 이상
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Installation Methods -->
+                    <div class="nav-tabs">
+                        <div class="nav-tab active" onclick="showTab('python')">🐍 Python 설치</div>
+                        <div class="nav-tab" onclick="showTab('docker')">🐳 Docker 설치</div>
+                    </div>
+
+                    <!-- Python Installation -->
+                    <div id="python-tab" class="tab-content active">
+                        <div class="method-card">
+                            <div class="method-header">
+                                <h2>🐍 Python 설치 흐름 (로컬 Python에 직접 설치)</h2>
+                                <p><strong>권장 대상:</strong> Docker 사용이 어렵거나, 기존 로컬 개발 환경에 직접 설치하고 싶은 경우</p>
+                                <p><strong>특징:</strong> 별도 컨테이너 없이 바로 설치, 기존 Python/Node 환경과 충돌 가능성 있음</p>
+                            </div>
+                            <div class="method-content">
+                                <h3>📋 사전 준비</h3>
+                                <ul>
+                                    <li>운영체제: Windows 10/11</li>
+                                    <li>패키지 관리자: <code>winget</code> 사용 가능 권장 (자동 설치에 활용)</li>
+                                    <li>권장 버전: Python 3.11 이상, Node.js 20 이상</li>
+                                </ul>
+
+                                <h3>🚀 설치</h3>
+                                <div class="step-item">
+                                    <div class="step-number">1</div>
+                                    <div>
+                                        <strong><code>setup_mcpo_python.bat</code> 더블클릭</strong> 또는 관리자 PowerShell에서 실행
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">2</div>
+                                    <div>
+                                        <strong>스크립트가 자동으로 수행합니다:</strong>
+                                        <ul>
+                                            <li>Python 미설치/구버전 시 최신 안정 버전(3.10+) 자동 설치 및 PATH 보강</li>
+                                            <li><code>C:\nally_mcpo</code> 폴더 및 <code>config.json</code> 생성</li>
+                                            <li><code>mcpo</code>, <code>uv</code> 등 Python 패키지 설치</li>
+                                            <li><code>npx</code> 사용을 위한 Node.js(LTS) 설치</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">3</div>
+                                    <div>
+                                        완료 메시지(<strong>설치가 완료되었습니다</strong>)가 나오면 성공
+                                    </div>
+                                </div>
+
+                                <h3>▶️ 서버 시작</h3>
+                                <div class="code-block">start_mcpo_server.bat</div>
+
+                                <h3>⏹️ 서버 종료</h3>
+                                <p>실행 중인 터미널에서 <code>Ctrl + C</code> 입력</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Docker Installation -->
+                    <div id="docker-tab" class="tab-content">
+                        <div class="method-card">
+                            <div class="method-header">
+                                <h2>🐳 Docker 설치 흐름 (컨테이너 격리 환경)</h2>
+                                <p><strong>권장 대상:</strong> 로컬 환경과 격리해 충돌을 피하고 싶을 때, 여러 프로젝트를 병행할 때</p>
+                                <p><strong>특징:</strong> Docker Desktop 필요, 환경 격리와 손쉬운 초기화/재설치 장점</p>
+                            </div>
+                            <div class="method-content">
+                                <h3>📋 사전 준비</h3>
+                                <ul>
+                                    <li>운영체제: Windows 10/11</li>
+                                    <li>Docker Desktop 설치 및 실행 (가상화 기능 활성화 필요)</li>
+                                </ul>
+
+                                <h3>🚀 설치</h3>
+                                <div class="step-item">
+                                    <div class="step-number">1</div>
+                                    <div>
+                                        <strong><code>setup_mcpo_docker.bat</code> 더블클릭</strong> 또는 PowerShell에서 실행
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">2</div>
+                                    <div>
+                                        <strong>스크립트가 자동으로 수행합니다:</strong>
+                                        <ul>
+                                            <li>Docker 연결 확인 및 빌드 컨텍스트 준비</li>
+                                            <li><code>ncurity-mcpo</code> 이미지 빌드</li>
+                                            <li><code>mcpo</code> 컨테이너 생성</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="step-item">
+                                    <div class="step-number">3</div>
+                                    <div>
+                                        완료 메시지(<strong>Docker setup and container creation complete</strong>) 확인
+                                    </div>
+                                </div>
+
+                                <h3>▶️ 서버 시작</h3>
+                                <div class="code-block">start_mcpo_docker.bat</div>
+
+                                <h3>⏹️ 서버 종료</h3>
+                                <ul>
+                                    <li>스크립트 안내에 따라 아무 키나 눌러 컨테이너 중지</li>
+                                    <li>또는 수동으로 <code>docker stop mcpo</code> 실행</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Authentication -->
+                    <div class="method-card">
+                        <div class="method-header">
+                            <h2>🔐 MCP 인증</h2>
+                        </div>
+                        <div class="method-content">
+                            <p>설치가 끝났다면 Atlassian, Teams 등 MCP 서비스 사용을 위해 인증을 진행하세요. (설치 방식과 무관하게 필수)</p>
+                            
+                            <div class="code-block">authenticate_mcps.bat</div>
+                            
+                            <h3>인증 과정</h3>
+                            <div class="step-item">
+                                <div class="step-number">1</div>
+                                <div>
+                                    <strong>Atlassian 인증:</strong> 새 터미널 창이 열리고 브라우저가 자동 실행됩니다. 로그인 후 접근을 허용하세요. 인증 후에도 이 터미널 창은 닫지 마세요.
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">2</div>
+                                <div>
+                                    <strong>Teams 인증:</strong> 원래 창에서 안내에 따라 로그인 코드를 입력하거나 브라우저로 Microsoft 계정 로그인 진행.
+                                </div>
+                            </div>
+
+                            <div class="info-box">
+                                <h4>📱 Teams MCP 디바이스 코드 인증 안내:</h4>
+                                <div class="code-block">📱 Please complete authentication:
+🌐 Visit: https://microsoft.com/devicelogin
+🔑 Enter code: ANYZZSCQH
+⏳ Waiting for you to complete authentication...</div>
+                                <p><strong>방법:</strong> 터미널 메시지의 링크(https://microsoft.com/devicelogin)를 Ctrl 키를 누른 상태로 클릭해 접속한 뒤, 표시된 코드를 그대로 입력하면 됩니다.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Open WebUI Connection -->
+                    <div class="method-card">
+                        <div class="method-header">
+                            <h2>🔗 Open WebUI에서 MCP 연결 방법</h2>
+                        </div>
+                        <div class="method-content">
+                            <div class="step-item">
+                                <div class="step-number">1</div>
+                                <div>Open WebUI 화면의 설정 > 도구에서 <strong>+ (연결 추가)</strong> 버튼을 클릭합니다.</div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">2</div>
+                                <div>
+                                    <strong>API 기본 URL</strong>에 기본 베이스 주소로 <code>http://localhost:8000</code>을 입력한 뒤, 뒤에 연동할 MCP 이름을 붙여줍니다.<br>
+                                    <strong>예시:</strong>
+                                    <ul>
+                                        <li>Atlassian MCP의 경우: <code>http://localhost:8000/atlassian</code></li>
+                                        <li>Teams MCP의 경우: <code>http://localhost:8000/teams-mcp</code></li>
+                                        <li>N8N MCP의 경우: <code>http://localhost:8000/n8n-mcp</code></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">3</div>
+                                <div><strong>활성화</strong> 버튼 옆의 <strong>새로고침(연결확인)</strong> 버튼을 클릭합니다.</div>
+                            </div>
+                            <div class="step-item">
+                                <div class="step-number">4</div>
+                                <div>화면 오른쪽 상단에 <strong>"연결 성공"</strong>이라는 문구가 뜨면 연동이 정상적으로 완료된 것입니다.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Troubleshooting -->
+                    <div class="method-card">
+                        <div class="method-header">
+                            <h2>🛠️ 문제 해결</h2>
+                        </div>
+                        <div class="method-content">
+                            <h3>Docker 관련 오류 발생 시</h3>
+                            <p><code>setup_mcpo_docker.bat</code> 실행 중 Docker 연결 오류가 발생하면, Docker Desktop이 완전히 시작될 때까지 기다린 후 다시 시도해 보세요. 시스템 트레이의 고래 아이콘 애니메이션이 멈추면 시작이 완료된 것입니다.</p>
+
+                            <h3>인증이 안될 경우</h3>
+                            <p><code>authenticate_mcps.bat</code> 실행 시 브라우저가 자동으로 열리지 않으면, 터미널에 출력되는 URL을 직접 복사하여 브라우저 주소창에 붙여넣어 시도해 보세요.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="step">
-            <h3>2단계: Python 가상환경 설정</h3>
-            <div class="code">
-python -m venv venv<br>
-source venv/bin/activate  # Linux/Mac<br>
-venv\Scripts\activate     # Windows
-            </div>
-        </div>
-
-        <div class="step">
-            <h3>3단계: 종속성 설치</h3>
-            <div class="code">
-pip install -r requirements.txt<br>
-pip install -e .
-            </div>
-        </div>
-
-        <div class="step">
-            <h3>4단계: 환경 변수 설정</h3>
-            <div class="code">
-export WEBUI_SECRET_KEY="your-secret-key"<br>
-export ENABLE_MCP=true
-            </div>
-        </div>
-
-        <div class="step">
-            <h3>5단계: 서버 시작</h3>
-            <div class="code">
-python -m open_webui.main
-            </div>
-        </div>
-
-        <h2>🐳 Docker 설치 방법 (권장)</h2>
-        
-        <div class="step">
-            <h3>1단계: Docker 이미지 다운로드</h3>
-            <div class="code">
-docker pull ghcr.io/open-webui/open-webui:main
-            </div>
-        </div>
-
-        <div class="step">
-            <h3>2단계: 컨테이너 실행</h3>
-            <div class="code">
-docker run -d --name open-webui \<br>
-  -p 3000:8080 \<br>
-  -e ENABLE_MCP=true \<br>
-  -e WEBUI_SECRET_KEY="your-secret-key" \<br>
-  -v open-webui:/app/backend/data \<br>
-  ghcr.io/open-webui/open-webui:main
-            </div>
-        </div>
-
-        <div class="success">
-            ✅ 설치 완료! http://localhost:3000 에서 접속 가능합니다.
-        </div>
-
-        <h2>🔐 MCP (Model Context Protocol) 인증 설정</h2>
-        
-        <div class="step">
-            <h3>1단계: 관리자 계정 생성</h3>
-            <p>첫 접속 시 관리자 계정을 생성합니다.</p>
-        </div>
-
-        <div class="step">
-            <h3>2단계: MCP 서버 설정</h3>
-            <p>설정 → MCP 설정에서 다음 정보 입력:</p>
-            <div class="code">
-서버 이름: atlassian-mcp<br>
-엔드포인트: https://your-mcp-server.com/mcp<br>
-API 키: your-api-key
-            </div>
-        </div>
-
-        <div class="step">
-            <h3>3단계: Atlassian 연동 설정</h3>
-            <div class="code">
-{
-  "mcpServers": {
-    "atlassian": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@atlassianlabs/mcp-server-atlassian@latest"
-      ],
-      "env": {
-        "ATLASSIAN_API_TOKEN": "your-atlassian-api-token",
-        "ATLASSIAN_DOMAIN": "your-domain.atlassian.net",
-        "ATLASSIAN_EMAIL": "your-email@example.com"
-      }
-    }
-  }
-}
-            </div>
-        </div>
-
-        <div class="step">
-            <h3>4단계: Microsoft Teams 연동</h3>
-            <div class="code">
-{
-  "mcpServers": {
-    "teams": {
-      "command": "node",
-      "args": [
-        "path/to/teams-mcp-server.js"
-      ],
-      "env": {
-        "TEAMS_CLIENT_ID": "your-teams-client-id",
-        "TEAMS_CLIENT_SECRET": "your-teams-client-secret",
-        "TEAMS_TENANT_ID": "your-tenant-id"
-      }
-    }
-  }
-}
-            </div>
-        </div>
-
-        <h2>🔗 Open WebUI와 MCP 연결</h2>
-        
-        <div class="step">
-            <h3>1단계: MCP 클라이언트 설정</h3>
-            <p>Open WebUI 설정에서 MCP 클라이언트를 활성화합니다.</p>
-        </div>
-
-        <div class="step">
-            <h3>2단계: 서버 연결 테스트</h3>
-            <div class="code">
-curl -X POST http://localhost:3000/api/mcp/test \<br>
-  -H "Content-Type: application/json" \<br>
-  -d '{"server": "atlassian"}'
-            </div>
-        </div>
-
-        <div class="step">
-            <h3>3단계: 권한 설정</h3>
-            <p>MCP 서버별로 접근 권한을 설정합니다:</p>
-            <ul>
-                <li>읽기 권한: 데이터 조회</li>
-                <li>쓰기 권한: 데이터 수정</li>
-                <li>관리자 권한: 서버 설정 변경</li>
-            </ul>
-        </div>
-
-        <h2>⚙️ 추가 설정</h2>
-        
-        <div class="step">
-            <h3>환경 변수 설정</h3>
-            <div class="code">
-# .env 파일 생성<br>
-WEBUI_SECRET_KEY=your-secret-key<br>
-ENABLE_MCP=true<br>
-MCP_SERVER_URL=http://localhost:8000<br>
-ATLASSIAN_API_TOKEN=your-token<br>
-TEAMS_CLIENT_ID=your-client-id
-            </div>
-        </div>
-
-        <div class="step">
-            <h3>로그 설정</h3>
-            <div class="code">
-export LOG_LEVEL=INFO<br>
-export MCP_LOG_LEVEL=DEBUG
-            </div>
-        </div>
-
-        <h2>🛠️ 문제 해결</h2>
-        
-        <div class="warning">
-            <h3>⚠️ 일반적인 문제</h3>
-            <ul>
-                <li><strong>포트 충돌:</strong> 다른 포트 사용 (-p 8080:8080)</li>
-                <li><strong>권한 오류:</strong> sudo 권한으로 실행</li>
-                <li><strong>메모리 부족:</strong> Docker 메모리 할당 증가</li>
-                <li><strong>MCP 연결 실패:</strong> 네트워크 설정 확인</li>
-            </ul>
-        </div>
-
-        <div class="step">
-            <h3>로그 확인</h3>
-            <div class="code">
-# Docker 로그 확인<br>
-docker logs open-webui<br><br>
-# MCP 서버 로그<br>
-tail -f /var/log/mcp-server.log
-            </div>
-        </div>
-
-        <div class="step">
-            <h3>연결 테스트</h3>
-            <div class="code">
-# 웹 인터페이스 접속 테스트<br>
-curl http://localhost:3000/health<br><br>
-# MCP 서버 연결 테스트<br>
-telnet localhost 8000
-            </div>
-        </div>
-
-        <h2>📚 참고 자료</h2>
-        <ul>
-            <li><a href="https://github.com/open-webui/open-webui" target="_blank">Open WebUI GitHub</a></li>
-            <li><a href="https://docs.open-webui.com/" target="_blank">공식 문서</a></li>
-            <li><a href="https://github.com/modelcontextprotocol/specification" target="_blank">MCP 스펙</a></li>
-            <li><a href="https://developer.atlassian.com/cloud/confluence/rest/v2/" target="_blank">Atlassian API</a></li>
-        </ul>
-
-        <div class="success">
-            🎉 OpenWebUI MCPO 서버 설치 및 MCP 인증 설정이 완료되었습니다!<br>
-            문제가 발생하면 로그를 확인하고 GitHub Issues를 참조하세요.
-        </div>
-        
-        <div class="nav-buttons">
-            <a href="index.html" class="nav-button">🏠 홈으로</a>
-            <a href="posts.html" class="nav-button">📝 포스트 목록</a>
         </div>
     </div>
+
+    <!-- Framework7 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/framework7@8/js/framework7.bundle.min.js"></script>
+    <script>
+        // Initialize Framework7
+        const app = new Framework7({
+            el: '#app',
+            name: 'MCPO Guide',
+            theme: 'auto',
+        });
+
+        // Tab switching function
+        function showTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all nav tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to clicked nav tab
+            event.target.classList.add('active');
+        }
+    </script>
 </body>
 </html>
